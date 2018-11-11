@@ -1,5 +1,7 @@
+x- create component for creating new time sheet
+x- create service for saving new time sheet
+x - make sure db stuff has a home
+x- create component to list time sheets
 
-todo
-- create component for listing a time sheet
-- create component for adding a time sheet
-- save data from adding time sheet 
+- create service to list time sheets
+- how do you properly encapsulate a private component function?

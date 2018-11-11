@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Bootstrap, from Twitter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <style>
+        body {
+            padding-top: 60px;
+            /* 60px to make the container go all the way to the bottom of the topbar */
+        }
+    </style>
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+
+        <h1>My Timesheets</h1>
+        <button type="button" class="btn btn-primary">Add Time Sheet</button>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Start Date</th>
+                    <th scope="col">End Date</th>
+                    <th scope="col">&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td scope="row">10/29</td>
+                    <td>11/2</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td scope="row">11/5</td>
+                    <td>11/9</td>
+                    <td>&nbsp;</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <hr>
+    <div class="container">
+        <h1>Create Time Sheet</h1>
+        <div class="control-group">
+            <label for="email" class="control-label">
+                Start Date(Monday)
+            </label>
+            <div class="controls">
+                <input name="txtStartDate" type="text" value="" id="txtStartDate">
+            </div>
+        </div>
+
+        <br>
+        <div class="form-actions">
+            <button type="button" class="btn btn-large btn-primary">
+                Save
+            </button>
+        </div>
+    </div>
+    <hr>
+
+    <div class="container">
+        <h1>Create Time Entry</h1>
+        <div class="control-group">
+            <label for="date" class="control-label">
+                Date
+            </label>
+            <div class="controls">
+                <input name="txtDate" type="text" value="" id="txtDate">
+            </div>
+        </div>
+        <div class="control-group">
+            <label for="start" class="control-label">
+                Start
+            </label>
+            <div class="controls">
+                <input name="txtStart" type="text" value="" id="txtStart">
+            </div>
+        </div>
+        <div class="control-group">
+            <label for="start" class="control-label">
+                End
+            </label>
+            <div class="controls">
+                <input name="txtEnd" type="text" value="" id="txtEnd">
+            </div>
+        </div>
+        <div class="control-group">
+            <label for="hours" class="control-label">
+                Hours
+            </label>
+            <div class="controls">
+                <input name="txtHours" type="text" value="" id="txtHours">
+            </div>
+        </div>
+        <div class="control-group">
+            <label for="story" class="control-label">
+                Story
+            </label>
+            <div class="controls">
+                <input name="txtStory" type="text" value="" id="txtStory">
+            </div>
+        </div>
+        <div class="control-group">
+            <label for="task" class="control-label">
+                Task
+            </label>
+            <div class="controls">
+                <input name="txtTask" type="text" value="" id="txtTask">
+            </div>
+        </div>
+
+
+        <br>
+        <div class="form-actions">
+            <button type="button" class="btn btn-large btn-primary">
+                Save
+            </button>
+        </div>
+    </div>
+    <hr>
+
+    <h1>Time Entry List</h1>
+    <button type="button" class="btn btn-primary">Add Time Entry</button>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Start</th>
+                <th scope="col">End</th>
+                <th scope="col">Story</th>
+                <th scope="col">Task</th>
+                <th scope="col">Hours</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td scope="col">Date</td>
+                <td scope="col">Start</td>
+                <td scope="col">End</td>
+                <td scope="col">Story</td>
+                <td scope="col">Task</td>
+                <td scope="col">Hours</td>
+            </tr>
+            <tr>
+                    <td scope="col">Date</td>
+                    <td scope="col">Start</td>
+                    <td scope="col">End</td>
+                    <td scope="col">Story</td>
+                    <td scope="col">Task</td>
+                    <td scope="col">Hours</td>
+            </tr>
+            <tr>
+                    <td scope="col">Date</td>
+                    <td scope="col">Start</td>
+                    <td scope="col">End</td>
+                    <td scope="col">Story</td>
+                    <td scope="col">Task</td>
+                    <td scope="col">Hours</td>
+            </tr>                        
+        </tbody>
+    </table>
+
+
+    <script src="js/bootstrap.js"></script>
+
+
+</body>
+
+</html>
