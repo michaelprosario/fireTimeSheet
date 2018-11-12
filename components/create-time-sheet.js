@@ -16,7 +16,6 @@ class CreateTimeSheetComponent {
             dataServices.saveTimeSheet(timeSheetRecord);
 
             $("#divCreateTimeSheet").css('display','none');
-                
 
         };
         

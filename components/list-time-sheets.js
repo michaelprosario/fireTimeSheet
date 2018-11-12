@@ -19,6 +19,15 @@ Vue.component('list-time-sheets', {
             listTimeSheets.timeSheets = items;
         });
     },
+    methods: {
+        loadList: function() {
+            var listTimeSheets = this;
+            var fsDataServices = new FireStoreDataServices();
+            fsDataServices.getTimeSheets().then(function(items) {
+                listTimeSheets.timeSheets = items;
+            });            
+        }
+    },
     template: 
     `
 

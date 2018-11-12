@@ -5,3 +5,7 @@ x- create component to list time sheets
 x- create service to list time sheets
 - how do you properly encapsulate a private component function?
 - after saving new time sheet.. how do reload the list?
+- build component to list time sheet entries
+- build data service to get time sheet entries
+- build component to add time sheet entry
+
