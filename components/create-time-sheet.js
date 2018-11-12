@@ -14,6 +14,10 @@ class CreateTimeSheetComponent {
             };
 
             dataServices.saveTimeSheet(timeSheetRecord);
+
+            $("#divCreateTimeSheet").css('display','none');
+                
+
         };
         
     }
@@ -38,7 +42,7 @@ data: function () {
 },
 
   template: `
-<div class="divCreateTimeSheet">
+<div>
   <h1>Create Time Sheet</h1>
   <div class="control-group">
       <label for="email" class="control-label">

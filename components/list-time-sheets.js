@@ -1,50 +1,49 @@
 
-
-class ListTimeSheetComponent {
-    constructor(objDataServices) {
-        this.dataServices = objDataServices;
-        this.listTimeSheets = function(){
-            // do cool stuff
-        }
-        
-    }
+function listTimeSheetsAddTimeSheet()
+{
+    $("#divCreateTimeSheet").css('display','block');
+    
 }
 
-var dataServices = new FireStoreDataServices();
-var listTimeSheetsComponent = new ListTimeSheetComponent(dataServices);
 
 Vue.component('list-time-sheets', {
-data: function () {
+    data() {
+        return {
+            timeSheets: []
+        }
+    },
+    created: function () {
+        var listTimeSheets = this;
+        var fsDataServices = new FireStoreDataServices();
+        fsDataServices.getTimeSheets().then(function(items) {
+            listTimeSheets.timeSheets = items;
+        });
+    },
+    template: 
+    `
 
-    return {
-
-    }
-},
-
-  template: `
-
-  <div id="divListTimeSheets">
+  <div>
   <h1>My Timesheets</h1>
-  <button type="button" class="btn btn-primary">Add Time Sheet</button>
+  <button type="button" class="btn btn-primary" onclick="listTimeSheetsAddTimeSheet()">Add Time Sheet</button>
   <table class="table">
       <thead>
           <tr>
               <th scope="col">Start Date</th>
               <th scope="col">End Date</th>
+              <th scope="col"></th>
               <th scope="col">&nbsp;</th>
           </tr>
       </thead>
-      <tbody>
+      <tbody v-for="timeSheet in timeSheets">
           <tr>
-              <td scope="row">10/29</td>
-              <td>11/2</td>
+              <td scope="row">{{timeSheet.startDate}}</td>
+              <td>{{timeSheet.endDate}}</td>
+              <td>
+                <a v-bind:href="timeSheet.id">Edit</a>           
+              </td>
               <td>&nbsp;</td>
           </tr>
-          <tr>
-              <td scope="row">11/5</td>
-              <td>11/9</td>
-              <td>&nbsp;</td>
-          </tr>
+          
       </tbody>
   </table>
   </div>

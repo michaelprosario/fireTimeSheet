@@ -2,6 +2,6 @@ x- create component for creating new time sheet
 x- create service for saving new time sheet
 x - make sure db stuff has a home
 x- create component to list time sheets
-
-- create service to list time sheets
+x- create service to list time sheets
 - how do you properly encapsulate a private component function?
+- after saving new time sheet.. how do reload the list?

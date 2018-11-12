@@ -4,3 +4,4 @@ function getShortDateFormat(objDate){
     var year = objDate.getFullYear();
     return monthIndex + '/' + day +  '/' + year;    
 }
+

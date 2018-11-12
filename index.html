@@ -26,18 +26,21 @@
     <script src="components/list-time-sheets.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script>
+
+
         $(document).ready(function () {
-            new Vue({ el: '#components-demo' });
+            new Vue({ el: '#divCreateTimeSheet' });
+            objListTimeSheets = new Vue({ el: '#divListTimeSheets' });
         });
     </script>
 </head>
-<div id="components-demo">
-    <create-time-sheet></create-time-sheet>
-    <hr>
-    <list-time-sheets></list-time-sheets>
-
+<div id="divCreateTimeSheet" style="display:none">
+    <create-time-sheet/>
 </div>
 
+<div id="divListTimeSheets">
+    <list-time-sheets />
+</div>
 
 <body>
 
