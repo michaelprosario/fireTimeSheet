@@ -1,7 +1,7 @@
 
 
 class CreateTimeSheetComponent {
-    constructor(objDataServices) {
+    constructor(objDataServices, timeSheetCreatedCallback) {
         this.dataServices = objDataServices;
         this.save = function () {
             const strStartDate = $("#txtStartDate").val();
@@ -13,21 +13,34 @@ class CreateTimeSheetComponent {
                 endDate: strEndDate,
             };
 
-            dataServices.saveTimeSheet(timeSheetRecord);
+            var createTimeSheetComponent = this;
 
-            $("#divCreateTimeSheet").css('display','none');
+            dataServices.saveTimeSheet(timeSheetRecord).then(function(){
+                console.log("how do we reload the list?");
+                $("#divCreateTimeSheet").css('display','none');
+                timeSheetCreatedCallback();
+            });
 
         };
-        
+
     }
 }
 
+function handleTimeSheetCreated(){
+    console.log('handleTimeSheetCreated');
+    var dataServices = new FireStoreDataServices();
+    dataServices.getTimeSheets().then(function(items){
+
+        // What do we do?
+        
+    });
+}
+
 var dataServices = new FireStoreDataServices();
-var createTimeSheetComponent = new CreateTimeSheetComponent(dataServices);
+var createTimeSheetComponent = new CreateTimeSheetComponent(dataServices, handleTimeSheetCreated);
 
 Vue.component('create-time-sheet', {
 data: function () {
-
     // https://stackoverflow.com/questions/33078406/getting-the-date-of-next-monday
     // find next monday
     var d = new Date();

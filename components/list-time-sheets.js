@@ -2,7 +2,6 @@
 function listTimeSheetsAddTimeSheet()
 {
     $("#divCreateTimeSheet").css('display','block');
-    
 }
 
 
@@ -20,14 +19,11 @@ Vue.component('list-time-sheets', {
         });
     },
     methods: {
-        loadList: function() {
-            var listTimeSheets = this;
-            var fsDataServices = new FireStoreDataServices();
-            fsDataServices.getTimeSheets().then(function(items) {
-                listTimeSheets.timeSheets = items;
-            });            
+        setTimeSheets(timeSheetList) {
+            this.timeSheets = timeSheetList;
         }
     },
+
     template: 
     `
 

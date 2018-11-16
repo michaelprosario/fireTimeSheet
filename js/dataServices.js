@@ -1,12 +1,17 @@
 var FireStoreDataServices = function(){
     this.saveTimeSheet = function( objTimeSheet ) {
-        var db = firebase.firestore();
-        db.collection("time_sheets").add(objTimeSheet).then(function(docRef) {
-            console.log("Document written with ID: ", docRef.id);
-        })
-        .catch(function(error) {
-            console.error("Error adding document: ", error);
-        });
+
+        return new Promise(function(resolve,reject) {
+            var db = firebase.firestore();
+            db.collection("time_sheets").add(objTimeSheet).then(function(docRef) {
+                console.log("Document written with ID: ", docRef.id);
+                resolve(docRef.id);
+            })
+            .catch(function(error) {
+                console.error("Error adding document: ", error);
+                reject(error);
+            });                
+        });     
     }
 
     this.getTimeSheets = function(){

@@ -17,16 +17,17 @@
 
     <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-firestore.js"></script> 
+    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-firestore.js"></script>
 
     <script src="js/firebaseConfig.js"></script>
     <script src="js/app.js"></script>
-    <script src="js/dataServices.js"></script>    
+    <script src="js/dataServices.js"></script>
     <script src="components/create-time-sheet.js"></script>
     <script src="components/list-time-sheets.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-    <script>
+    <script src="js/bootstrap.js"></script>
 
+    <script>
 
         $(document).ready(function () {
             new Vue({ el: '#divCreateTimeSheet' });
@@ -34,19 +35,15 @@
         });
     </script>
 </head>
-<div id="divCreateTimeSheet" style="display:none">
-    <create-time-sheet/>
-</div>
-
-<div id="divListTimeSheets">
-    <list-time-sheets />
-</div>
 
 <body>
+    <div id="divCreateTimeSheet" style="display:none">
+        <create-time-sheet/>
+    </div>
 
-    <script src="js/bootstrap.js"></script>
-
-
+    <div id="divListTimeSheets">
+        <list-time-sheets ref="listTimeSheets" />
+    </div>
 </body>
 
 </html>
