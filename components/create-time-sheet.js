@@ -30,9 +30,7 @@ function handleTimeSheetCreated(){
     console.log('handleTimeSheetCreated');
     var dataServices = new FireStoreDataServices();
     dataServices.getTimeSheets().then(function(items){
-
-        // What do we do?
-        
+        window.location = window.location.href
     });
 }
 

@@ -6,21 +6,13 @@ function listTimeSheetsAddTimeSheet()
 
 
 Vue.component('list-time-sheets', {
-    data() {
+    
+    created: function(){
+        console.log(this.timeSheets);
+    },
+    data: function(){
         return {
-            timeSheets: []
-        }
-    },
-    created: function () {
-        var listTimeSheets = this;
-        var fsDataServices = new FireStoreDataServices();
-        fsDataServices.getTimeSheets().then(function(items) {
-            listTimeSheets.timeSheets = items;
-        });
-    },
-    methods: {
-        setTimeSheets(timeSheetList) {
-            this.timeSheets = timeSheetList;
+            timeSheets: timeSheetData
         }
     },
 
@@ -29,6 +21,7 @@ Vue.component('list-time-sheets', {
 
   <div>
   <h1>My Timesheets</h1>
+  
   <button type="button" class="btn btn-primary" onclick="listTimeSheetsAddTimeSheet()">Add Time Sheet</button>
   <table class="table">
       <thead>

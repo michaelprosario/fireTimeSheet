@@ -28,10 +28,26 @@
     <script src="js/bootstrap.js"></script>
 
     <script>
+        var fsDataServices;
+        var timeSheetData;
+
+        function loadTimeSheetList(){
+            fsDataServices.getTimeSheets().then(function(items) {
+                timeSheetData = items;
+                var listTimeSheetsComponent = new Vue(
+                {  
+                    el: '#divListTimeSheets',
+                    data: {
+                        
+                    }                    
+                });
+            });
+        }
 
         $(document).ready(function () {
+            fsDataServices = new FireStoreDataServices();
+            loadTimeSheetList();
             new Vue({ el: '#divCreateTimeSheet' });
-            new Vue({ el: '#divListTimeSheets' });
         });
     </script>
 </head>
@@ -42,7 +58,7 @@
     </div>
 
     <div id="divListTimeSheets">
-        <list-time-sheets ref="listTimeSheets" />
+        <list-time-sheets  />
     </div>
 </body>
 
