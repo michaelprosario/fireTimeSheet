@@ -1,8 +1,7 @@
 
-
 class CreateTimeSheetComponent {
     constructor(objDataServices) {
-        this.dataServices = objDataServices;
+        this.fsDataServices = objDataServices;
     }
 
     save(){
@@ -15,12 +14,10 @@ class CreateTimeSheetComponent {
             endDate: strEndDate,
         };
 
-        var createTimeSheetComponent = this;
-
-        dataServices.saveTimeSheet(timeSheetRecord).then(function(){
+        fsDataServices.saveTimeSheet(timeSheetRecord).then(function(){
             $("#divCreateTimeSheet").css('display','none');
             
-            dataServices.getTimeSheets().then(function(items){
+            fsDataServices.getTimeSheets().then(function(items){
                 timeSheetData.splice(0,timeSheetData.length)
                 items.forEach((timeSheet) => {
                     timeSheetData.push(timeSheet);
@@ -30,9 +27,8 @@ class CreateTimeSheetComponent {
     }
 }
 
-
-var dataServices = new FireStoreDataServices();
-var createTimeSheetComponent = new CreateTimeSheetComponent(dataServices);
+var fsDataServices = new FireStoreDataServices();
+var createTimeSheetComponent = new CreateTimeSheetComponent(fsDataServices);
 
 Vue.component('create-time-sheet', {
 data: function () {
@@ -43,12 +39,19 @@ data: function () {
     const nextMonday = getShortDateFormat(d);
 
     return {
-    defaultDate: nextMonday,
-    handleSave: createTimeSheetComponent.save
+        defaultDate: nextMonday
     }
 },
 
-  template: `
+methods: 
+{
+    handleSave: function(){
+        createTimeSheetComponent.save();
+    }
+},
+
+
+template: `
 <div>
   <h1>Create Time Sheet</h1>
   <div class="control-group">
