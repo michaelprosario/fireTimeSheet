@@ -17,6 +17,7 @@ class CreateTimeSheetComponent {
 
             dataServices.saveTimeSheet(timeSheetRecord).then(function(){
                 console.log("how do we reload the list?");
+                
                 $("#divCreateTimeSheet").css('display','none');
                 timeSheetCreatedCallback();
             });
@@ -30,7 +31,10 @@ function handleTimeSheetCreated(){
     console.log('handleTimeSheetCreated');
     var dataServices = new FireStoreDataServices();
     dataServices.getTimeSheets().then(function(items){
-        window.location = window.location.href
+        timeSheetData.splice(0,timeSheetData.length)
+        items.forEach((timeSheet) => {
+            timeSheetData.push(timeSheet);
+        });
     });
 }
 
