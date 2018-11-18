@@ -1,41 +1,38 @@
 
 
 class CreateTimeSheetComponent {
-    constructor(objDataServices, timeSheetCreatedCallback) {
+    constructor(objDataServices) {
         this.dataServices = objDataServices;
-        this.save = function () {
-            const strStartDate = $("#txtStartDate").val();
-            const objStartDate = new Date(strStartDate);
-            const objEndDate = new Date(objStartDate.getFullYear(), objStartDate.getMonth(), objStartDate.getDate() + 4);
-            const strEndDate = getShortDateFormat(objEndDate);
-            let timeSheetRecord = {
-                startDate: strStartDate,
-                endDate: strEndDate,
-            };
+    }
 
-            var createTimeSheetComponent = this;
-
-            dataServices.saveTimeSheet(timeSheetRecord).then(function(){
-                console.log("how do we reload the list?");
-                $("#divCreateTimeSheet").css('display','none');
-                timeSheetCreatedCallback();
-            });
-
+    save(){
+        const strStartDate = $("#txtStartDate").val();
+        const objStartDate = new Date(strStartDate);
+        const objEndDate = new Date(objStartDate.getFullYear(), objStartDate.getMonth(), objStartDate.getDate() + 4);
+        const strEndDate = getShortDateFormat(objEndDate);
+        let timeSheetRecord = {
+            startDate: strStartDate,
+            endDate: strEndDate,
         };
 
+        var createTimeSheetComponent = this;
+
+        dataServices.saveTimeSheet(timeSheetRecord).then(function(){
+            $("#divCreateTimeSheet").css('display','none');
+            
+            dataServices.getTimeSheets().then(function(items){
+                timeSheetData.splice(0,timeSheetData.length)
+                items.forEach((timeSheet) => {
+                    timeSheetData.push(timeSheet);
+                });
+            });
+        });
     }
 }
 
-function handleTimeSheetCreated(){
-    console.log('handleTimeSheetCreated');
-    var dataServices = new FireStoreDataServices();
-    dataServices.getTimeSheets().then(function(items){
-        window.location = window.location.href
-    });
-}
 
 var dataServices = new FireStoreDataServices();
-var createTimeSheetComponent = new CreateTimeSheetComponent(dataServices, handleTimeSheetCreated);
+var createTimeSheetComponent = new CreateTimeSheetComponent(dataServices);
 
 Vue.component('create-time-sheet', {
 data: function () {
