@@ -50,7 +50,15 @@ template: `
         </tr>        
     </tbody>
 </table>
+
+<div id="divCreateTimeEntry">
+<create-time-entry />
 </div>
+
+</div>
+
+
+
 
 `
 })

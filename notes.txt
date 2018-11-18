@@ -3,11 +3,12 @@ x- create service for saving new time sheet
 x - make sure db stuff has a home
 x- create component to list time sheets
 x- create service to list time sheets
+x- after saving new time sheet.. how do reload the list?
+
+- build component to add time sheet entry
 - how do you properly encapsulate a private component function?
-- after saving new time sheet.. how do reload the list?
 - build component to list time sheet entries
 - build data service to get time sheet entries
-- build component to add time sheet entry
 
 https://github.com/academind/yt-devmeetup-vue-firebase/tree/master/src
 https://scotch.io/tutorials/building-a-google-keep-clone-with-vue-and-firebase-pt-1
