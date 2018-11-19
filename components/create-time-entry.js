@@ -76,8 +76,24 @@ methods:
         }
     },
 
+    getFormErrors: function() {
+        var errors = [];
+
+        if(this.project ===""){
+            errors.push("Project is required.")
+        }
+
+
+        return errors;
+    },
+
     handleCreateTimeEntry: function(){
         console.log("handleCreateTimeEntry")
+        var errors = this.getFormErrors();
+
+        if(errors.length === 0){
+            console.log("save stuff");
+        }
     }
 
 },
