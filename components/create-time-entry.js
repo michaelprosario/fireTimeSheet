@@ -4,10 +4,13 @@ x - default date to today
 x- enter start time
 x- enter end time
 x- calculate hours
-- make sure project is required
-- make sure story is required
-- make sure task is required
-- provide a way to add notes
+x- make sure project is required
+x- make sure story is required
+x- provide a way to add notes
+
+- implement save operation for form data
+- how do we pass in the time sheet id?
+- use a two col format for the screen
 
 */
 
@@ -48,14 +51,15 @@ data: function () {
     dateToday = getShortDateFormat(dateToday);
 
     return {
-        dateForToday: dateToday,
+        
         startTime: '',
         endTime: '',
         hours: '',
         project: '',
         story: '',
         task: '',
-        date: ''
+        date: dateToday,
+        notes: ''
     }
 },
 
@@ -78,10 +82,31 @@ methods:
 
     getFormErrors: function() {
         var errors = [];
+        console.log(this);
 
         if(this.project ===""){
             errors.push("Project is required.")
         }
+        
+        if(this.story ===""){
+            errors.push("Story is required.")
+        }     
+        
+        if(!isValidTime(this.startTime)) {
+            errors.push('Valid start time is required');
+        }
+        
+        if(!isValidTime(this.endTime)) {
+            errors.push('Valid end time is required');
+        }
+        
+        if(isNaN(Date.parse(this.date))) {
+            errors.push("Please provide a valid date")
+        }
+        
+        // date should be valid date
+        
+        // hours should be a float
 
 
         return errors;
@@ -93,6 +118,8 @@ methods:
 
         if(errors.length === 0){
             console.log("save stuff");
+        }else{
+            console.log(errors);
         }
     }
 
@@ -186,7 +213,19 @@ template: `
                 >
     </div>
 </div>
-
+<div class="control-group">
+    <label for="task" class="control-label">
+        Notes
+    </label>
+    <div class="controls">
+        <textarea   name="txtNotes" 
+                    type="text"
+                    id="txtNotes"
+                    v-model:value="notes"
+                    >
+        </textarea>
+    </div>
+</div>
 
 <br>
 <div class="form-actions">
