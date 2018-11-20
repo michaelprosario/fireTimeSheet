@@ -1,34 +1,4 @@
 
-class CreateTimeEntryComponent {
-    constructor(objDataServices) {
-        this.fsDataServices = objDataServices;
-    }
-
-    save(){
-
-        /*
-        let timeEntryRecord = {
-            
-        };
-        
-
-        fsDataServices.saveTimeEntry(timeEntryRecord).then(function(){
-            $("#divCreateTimeSheet").css('display','none');
-            
-            fsDataServices.getTimeSheets().then(function(items){
-                timeSheetData.splice(0,timeSheetData.length)
-                items.forEach((timeSheet) => {
-                    timeSheetData.push(timeSheet);
-                });
-            });
-        });
-
-        */
-    }
-}
-
-var fsDataServices = new FireStoreDataServices();
-var createTimeEntryComponent = new CreateTimeEntryComponent(fsDataServices);
 
 Vue.component('create-time-entry', {
 data: function () {
@@ -51,10 +21,6 @@ data: function () {
 
 methods: 
 {
-    handleSave: function(){
-        createTimeEntryComponent.save();
-    },
-
     handleOnBlurTime: function(){
         if(isValidTime(this.startTime) && isValidTime(this.endTime)){
             // adapted from here: http://jsfiddle.net/VnwF7/4/
@@ -103,7 +69,34 @@ methods:
         var errors = this.getFormErrors();
 
         if(errors.length === 0){
-            console.log("save stuff");
+            var fsDataServices = new FireStoreDataServices();
+            let timeEntryRecord = {
+                startTime: this.startTime,
+                endTime: this.endTime,
+                hours: this.hours,
+                project: this.project,
+                story: this.story,
+                task: this.task,
+                date: this.date,
+                notes: '',
+                timeSheetId: currentTimeSheetId
+            }
+            
+            fsDataServices.addTimeEntry(timeEntryRecord).then(function(){
+                
+                alert('record saved')
+                /*
+                $("#divCreateTimeEntry").css('display','none');
+                fsDataServices.getTimeSheets().then(function(items){
+                    timeSheetData.splice(0,timeSheetData.length)
+                    items.forEach((timeSheet) => {
+                        timeSheetData.push(timeSheet);
+                    });
+                });
+                */
+            });            
+
+
         }else{
             console.log(errors);
         }
