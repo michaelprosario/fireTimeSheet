@@ -15,6 +15,16 @@ data: function(){
     }
 },
 
+methods:{
+    selectTimeEntry: function(recordId) {
+        this.loadTimeEntry(recordId)
+    },
+    
+    loadTimeEntry: function(recordId){
+        console.log("load time entry ... " + recordId);
+    }
+},
+
 template: `
 <div>
 
@@ -51,14 +61,16 @@ template: `
     </tbody>
 </table>
 
+<div id="divListTimeEntries">
+    <list-time-entries v-on:select-record="selectTimeEntry($event)" />
+</div>
+
+
 <div id="divCreateTimeEntry">
-<create-time-entry />
+    <create-time-entry />
 </div>
 
 </div>
-
-
-
 
 `
 })

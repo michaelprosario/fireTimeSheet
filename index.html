@@ -23,25 +23,35 @@
     <script src="components/create-time-entry.js"></script>
     <script src="components/create-time-sheet.js"></script>
     <script src="components/list-time-sheets.js"></script>
+    <script src="components/list-time-entries.js"></script>
     
     <script>
         var fsDataServices;
         var timeSheetData;
+        var timeEntryData;
         var currentTimeSheetId = "fixme";
 
         function loadTimeSheetList(){
             fsDataServices.getTimeSheets().then(function(items) {
                 timeSheetData = items;
-                var listTimeSheetsComponent = new Vue(
-                {  
-                    el: '#divListTimeSheets'                    
-                });
+                fsDataServices.getTimeEntries().then(function(items) {
+                    timeEntryData = items;
+                    
+                    var listTimeSheetsComponent = new Vue(
+                    {  
+                        el: '#divListTimeSheets'                    
+                    });
+                
+                });            
             });
         }
-
+        
+        
         $(document).ready(function () {
             fsDataServices = new FireStoreDataServices();
             loadTimeSheetList();
+            loadTimeEntryList("fixme");
+            
         });
     </script>
 </head>

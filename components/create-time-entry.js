@@ -21,6 +21,7 @@ data: function () {
 
 methods: 
 {
+    
     handleOnBlurTime: function(){
         if(isValidTime(this.startTime) && isValidTime(this.endTime)){
             // adapted from here: http://jsfiddle.net/VnwF7/4/

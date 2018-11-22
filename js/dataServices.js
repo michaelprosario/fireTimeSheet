@@ -26,6 +26,35 @@ var FireStoreDataServices = function(){
         });     
     }
     
+    this.getTimeEntries = function(){
+                return new Promise(function(resolve,reject) {
+                    var db = firebase.firestore();
+        
+                    var items = [];
+                    db.collection("time_entries").get().then((querySnapshot) => {
+                        querySnapshot.forEach((doc) => {
+                            var rowData = doc.data();
+                            var timeEntryRow = {
+                                id: doc.id,
+                                startTime: rowData.startTime,
+                                endTime: rowData.endTime,
+                                hours: rowData.hours,
+                                project: rowData.project,
+                                story: rowData.story,
+                                task: rowData.task,
+                                date: rowData.date,
+                                notes: rowData.notes,
+                                timeSheetId: rowData.timeSheetId
+                            };
+    
+                            items.push(timeEntryRow);
+                        });
+        
+                        resolve(items);
+                });
+            });    
+    }
+    
     this.getTimeSheets = function(){
         
         return new Promise(function(resolve,reject) {
@@ -48,5 +77,9 @@ var FireStoreDataServices = function(){
 
             });
         });     
+             
     }
+        
+        
+    
 }
