@@ -9,6 +9,12 @@ x- build component to add time sheet entry
 x- build component to list time sheet entries
 x- build data service to get time sheet entries
 
+- load time entry data
+- connect time entry data to form
+- write function to update time entry
+- implement edit logic
+
+
 - how do we load a time sheet?
 - how do you properly encapsulate a private component function?
 

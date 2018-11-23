@@ -26,8 +26,44 @@ var FireStoreDataServices = function(){
         });     
     }
     
+    this.getTimeEntry = function(recordID) {
+        return new Promise(function(resolve,reject) {
+                var db = firebase.firestore();
+                
+                // this.itemscollection.doc(id).ref.get().then(function(doc) {
+
+                db.collection("time_entries").doc(recordID).get().then(function(doc) {
+                    if (doc.exists) {
+                        console.log("Document data:", doc.data());
+                        var rowData = doc.data();
+                        var timeEntryRow = {
+                            id: doc.id,
+                            startTime: rowData.startTime,
+                            endTime: rowData.endTime,
+                            hours: rowData.hours,
+                            project: rowData.project,
+                            story: rowData.story,
+                            task: rowData.task,
+                            date: rowData.date,
+                            notes: rowData.notes,
+                            timeSheetId: rowData.timeSheetId
+                        };
+                        
+                        resolve(rowData);
+                        
+                    } else {
+                        reject("Record not found");
+                    }
+                }).catch(function(error) {
+                    reject("Error getting document:", error);
+                });
+                
+            });
+    }    
+    
+    
     this.getTimeEntries = function(){
-                return new Promise(function(resolve,reject) {
+            return new Promise(function(resolve,reject) {
                     var db = firebase.firestore();
         
                     var items = [];
@@ -48,9 +84,10 @@ var FireStoreDataServices = function(){
                             };
     
                             items.push(timeEntryRow);
-                        });
+                    });
         
-                        resolve(items);
+                    resolve(items);
+                    
                 });
             });    
     }

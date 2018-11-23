@@ -4,7 +4,7 @@ function listTimeSheetsAddTimeSheet()
     $("#divCreateTimeSheet").css('display','block');
 }
 
-Vue.component('list-time-sheets', {
+Vue.component('time-sheet-app', {
     
 created: function(){
     console.log(this.timeSheets);
@@ -22,6 +22,11 @@ methods:{
     
     loadTimeEntry: function(recordId){
         console.log("load time entry ... " + recordId);
+        
+        fsDataServices.getTimeEntry(recordId).then(function(record){
+           console.log(record); 
+           timeEntryData = record;
+        });
     }
 },
 
