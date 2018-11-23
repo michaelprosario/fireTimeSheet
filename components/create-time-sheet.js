@@ -4,7 +4,7 @@ class CreateTimeSheetComponent {
         this.fsDataServices = objDataServices;
     }
 
-    save(){
+    save() {
         const strStartDate = $("#txtStartDate").val();
         const objStartDate = new Date(strStartDate);
         const objEndDate = new Date(objStartDate.getFullYear(), objStartDate.getMonth(), objStartDate.getDate() + 4);
@@ -14,11 +14,11 @@ class CreateTimeSheetComponent {
             endDate: strEndDate,
         };
 
-        fsDataServices.saveTimeSheet(timeSheetRecord).then(function(){
-            $("#divCreateTimeSheet").css('display','none');
-            
-            fsDataServices.getTimeSheets().then(function(items){
-                timeSheetData.splice(0,timeSheetData.length)
+        fsDataServices.saveTimeSheet(timeSheetRecord).then(function () {
+            $("#divCreateTimeSheet").css('display', 'none');
+
+            fsDataServices.getTimeSheets().then(function (items) {
+                timeSheetData.splice(0, timeSheetData.length)
                 items.forEach((timeSheet) => {
                     timeSheetData.push(timeSheet);
                 });
@@ -31,27 +31,27 @@ var fsDataServices = new FireStoreDataServices();
 var createTimeSheetComponent = new CreateTimeSheetComponent(fsDataServices);
 
 Vue.component('create-time-sheet', {
-data: function () {
-    // https://stackoverflow.com/questions/33078406/getting-the-date-of-next-monday
-    // find next monday
-    var d = new Date();
-    d.setDate(d.getDate() + (1 + 7 - d.getDay()) % 7);
-    const nextMonday = getShortDateFormat(d);
+    data: function () {
+        // https://stackoverflow.com/questions/33078406/getting-the-date-of-next-monday
+        // find next monday
+        var d = new Date();
+        d.setDate(d.getDate() + (1 + 7 - d.getDay()) % 7);
+        const nextMonday = getShortDateFormat(d);
 
-    return {
-        defaultDate: nextMonday
-    }
-},
+        return {
+            defaultDate: nextMonday
+        }
+    },
 
-methods: 
-{
-    handleSave: function(){
-        createTimeSheetComponent.save();
-    }
-},
+    methods:
+        {
+            handleSave: function () {
+                createTimeSheetComponent.save();
+            }
+        },
 
 
-template: `
+    template: `
 <div>
   <h1>Create Time Sheet</h1>
   <div class="control-group">

@@ -1,36 +1,54 @@
 
-function listTimeSheetsAddTimeSheet()
-{
-    $("#divCreateTimeSheet").css('display','block');
+function listTimeSheetsAddTimeSheet() {
+    $("#divCreateTimeSheet").css('display', 'block');
 }
 
 Vue.component('time-sheet-app', {
-    
-created: function(){
-    console.log(this.timeSheets);
-},
-data: function(){
-    return {
-        timeSheets: timeSheetData
-    }
-},
 
-methods:{
-    selectTimeEntry: function(recordId) {
-        this.loadTimeEntry(recordId)
+    created: function () {
+        console.log(this.timeSheets);
     },
-    
-    loadTimeEntry: function(recordId){
-        console.log("load time entry ... " + recordId);
-        
-        fsDataServices.getTimeEntry(recordId).then(function(record){
-           console.log(record); 
-           timeEntryData = record;
-        });
-    }
-},
+    data: function () {
+        return {
+            timeSheets: timeSheetData
+        }
+    },
 
-template: `
+    methods: {
+        selectTimeEntry: function (recordId) {
+            this.loadTimeEntry(recordId)
+        },
+
+        handleTimeEntrySaved: function () {
+            fsDataServices.getTimeEntries().then(function (items) {
+
+                timeEntryListData.splice(0, timeEntryListData.length)
+                items.forEach((record) => {
+                    timeEntryListData.push(record);
+                });
+
+            });
+        },
+
+        loadTimeEntry: function (recordId) {
+            console.log("load time entry ... " + recordId);
+
+            fsDataServices.getTimeEntry(recordId).then(function (record) {
+                timeEntryData.startTime = record.startTime;
+                timeEntryData.endTime = record.endTime;
+                timeEntryData.hours = record.hours;
+                timeEntryData.project = record.project;
+                timeEntryData.story = record.story;
+                timeEntryData.task = record.task;
+                timeEntryData.date = record.date;
+                timeEntryData.notes = record.notes;
+                timeEntryData.timeSheetId = record.timeSheetId;
+                timeEntryData.id = record.id;
+            });
+        }
+    },
+
+    template: `
 <div>
 
 <div id="divCreateTimeSheet" style="display:none">
@@ -72,7 +90,7 @@ template: `
 
 
 <div id="divCreateTimeEntry">
-    <create-time-entry />
+    <edit-time-entry v-on:record-saved="handleTimeEntrySaved()"/>
 </div>
 
 </div>

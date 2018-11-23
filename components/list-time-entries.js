@@ -1,28 +1,24 @@
 
 
 Vue.component('list-time-entries', {
-    
-created: function(){
-    
-},
-data: function(){
 
-    console.log("time entries");
-    console.log(timeEntryData);
-    
-    return {
-        timeEntries: timeEntryData
-    }
-},
+    created: function () {
 
-methods: {
-  selectRecord: function(objRow) {
-      
-      this.$emit('select-record', objRow.id )
-  }  
-},
+    },
+    data: function () {
 
-template: `
+        return {
+            timeEntries: timeEntryListData
+        }
+    },
+
+    methods: {
+        selectRecord: function (objRow) {
+            this.$emit('select-record', objRow.id)
+        }
+    },
+
+    template: `
 <div>
 
     <h1>Time Entry List</h1>
