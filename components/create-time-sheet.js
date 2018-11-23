@@ -50,7 +50,6 @@ Vue.component('create-time-sheet', {
             }
         },
 
-
     template: `
 <div>
   <h1>Create Time Sheet</h1>

@@ -11,7 +11,6 @@ Vue.component('edit-time-entry', {
 
     methods:
         {
-
             handleOnBlurTime: function () {
                 if (isValidTime(this.startTime) && isValidTime(this.endTime)) {
                     // adapted from here: http://jsfiddle.net/VnwF7/4/
@@ -77,12 +76,10 @@ Vue.component('edit-time-entry', {
                     var vm = this;
                     if (this.id === null || this.id === '') {
                         fsDataServices.addTimeEntry(timeEntryRecord).then(function () {
-                            alert('record saved');
                             vm.$emit('record-saved');
                         });
                     } else {
                         fsDataServices.updateTimeEntry(timeEntryRecord).then(function () {
-                            alert('record saved');
                             vm.$emit('record-saved');
                         });
                     }
@@ -221,20 +218,23 @@ Vue.component('edit-time-entry', {
             </textarea>
         </div>
     </div>
+    
 </div><!-- end row -->
-            
+<div class="row">
+    <div class="col">
+        <button 
+            type="button" 
+            class="btn btn-large btn-primary"
+            v-on:click="handleCreateTimeEntry"
+            >
+            Save
+        </button>
+    </div>
+
+</div>            
 </div>
 
 <br>
-<div class="form-actions">
-    <button 
-        type="button" 
-        class="btn btn-large btn-primary"
-        v-on:click="handleCreateTimeEntry"
-        >
-        Save
-    </button>
-</div>
 
 
 </div>

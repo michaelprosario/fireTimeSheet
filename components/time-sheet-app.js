@@ -34,16 +34,7 @@ Vue.component('time-sheet-app', {
             console.log("load time entry ... " + recordId);
 
             fsDataServices.getTimeEntry(recordId).then(function (record) {
-                timeEntryData.startTime = record.startTime;
-                timeEntryData.endTime = record.endTime;
-                timeEntryData.hours = record.hours;
-                timeEntryData.project = record.project;
-                timeEntryData.story = record.story;
-                timeEntryData.task = record.task;
-                timeEntryData.date = record.date;
-                timeEntryData.notes = record.notes;
-                timeEntryData.timeSheetId = record.timeSheetId;
-                timeEntryData.id = record.id;
+                Object.assign(timeEntryData, record);
             });
         }
     },
@@ -63,7 +54,7 @@ Vue.component('time-sheet-app', {
         Add Time Sheet
 </button>
 
-<table class="table">
+<table class="table table-hover">
     <thead>
         <tr>
             <th scope="col">Start Date</th>

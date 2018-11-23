@@ -1,5 +1,3 @@
-
-
 Vue.component('list-time-entries', {
 
     created: function () {
@@ -23,7 +21,7 @@ Vue.component('list-time-entries', {
 
     <h1>Time Entry List</h1>
     <button type="button" class="btn btn-primary">Add Time Entry</button>
-    <table class="table">
+    <table class="table table-hover">
         <thead>
             <tr>
                 <th scope="col">Date</th>
@@ -53,12 +51,6 @@ Vue.component('list-time-entries', {
             </tr>
         </tbody>
     </table>
-
-
 </div>
-
-
-
-
 `
 })
