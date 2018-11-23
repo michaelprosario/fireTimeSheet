@@ -1,18 +1,18 @@
-var FireStoreDataServices = function () {
-    this.saveTimeSheet = function (objTimeSheet) {
+class FireStoreDataServices {
+    saveTimeSheet(objTimeSheet) {
         return new Promise(function (resolve, reject) {
             var db = firebase.firestore();
             db.collection("time_sheets").add(objTimeSheet).then(function (docRef) {
                 resolve(docRef.id);
             })
-                .catch(function (error) {
-                    console.error("Error adding document: ", error);
-                    reject(error);
-                });
+            .catch(function (error) {
+                console.error("Error adding document: ", error);
+                reject(error);
+            });
         });
     }
 
-    this.addTimeEntry = function (objTimeEntry) {
+    addTimeEntry(objTimeEntry) {
         return new Promise(function (resolve, reject) {
             var db = firebase.firestore();
             db.collection("time_entries").add(objTimeEntry).then(function (docRef) {
@@ -26,7 +26,7 @@ var FireStoreDataServices = function () {
         });
     }
 
-    this.updateTimeEntry = function (objTimeEntry) {
+    updateTimeEntry(objTimeEntry) {
         return new Promise(function (resolve, reject) {
             console.log("record to be saved");
             console.log(objTimeEntry);
@@ -41,8 +41,7 @@ var FireStoreDataServices = function () {
         });
     }
     
-
-    this.getTimeEntry = function (recordID) {
+    getTimeEntry(recordID) {
         return new Promise(function (resolve, reject) {
             var db = firebase.firestore();
 
@@ -75,8 +74,7 @@ var FireStoreDataServices = function () {
         });
     }
 
-
-    this.getTimeEntries = function () {
+    getTimeEntries() {
         return new Promise(function (resolve, reject) {
             var db = firebase.firestore();
 
@@ -106,7 +104,7 @@ var FireStoreDataServices = function () {
         });
     }
 
-    this.getTimeSheets = function () {
+    getTimeSheets() {
 
         return new Promise(function (resolve, reject) {
             var db = firebase.firestore();
@@ -128,6 +126,5 @@ var FireStoreDataServices = function () {
 
             });
         });
-
     }
 }

@@ -9,13 +9,18 @@ x- build component to add time sheet entry
 x- build component to list time sheet entries
 x- build data service to get time sheet entries
 
-- load time entry data
-- connect time entry data to form
-- write function to update time entry
-- implement edit logic
+x- load time entry data
+x- connect time entry data to form
+x- write function to update time entry
+x- implement edit logic
 
+- implement function to select time sheet and load list of time entries
+- implement time sheet delete
+- implement time entry delete
+- implement js to hide and show lists and forms appropriately
+- learn auth
+- implement authorization
 
-- how do we load a time sheet?
 - how do you properly encapsulate a private component function?
 
 https://github.com/academind/yt-devmeetup-vue-firebase/tree/master/src
