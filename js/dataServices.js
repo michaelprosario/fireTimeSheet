@@ -83,7 +83,12 @@ class FireStoreDataServices {
             var db = firebase.firestore();
 
             var items = [];
-            db.collection("time_entries").where("timeSheetId", "==", recordId).get().then((querySnapshot) => {
+            db.collection("time_entries")
+                .where("timeSheetId", "==", recordId)
+                .orderBy("date")
+                .orderBy("startTime")
+                .get()
+                .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
                     var rowData = doc.data();
                     var timeEntryRow = {

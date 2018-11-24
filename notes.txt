@@ -4,24 +4,21 @@ x - make sure db stuff has a home
 x- create component to list time sheets
 x- create service to list time sheets
 x- after saving new time sheet.. how do reload the list?
-
 x- build component to add time sheet entry
 x- build component to list time sheet entries
 x- build data service to get time sheet entries
-
 x- load time entry data
 x- connect time entry data to form
 x- write function to update time entry
 x- implement edit logic
-
 x- implement function to select time sheet and load list of time entries
-- implement js to hide and show lists and forms appropriately
+x- implement js to hide and show lists and forms appropriately
 - implement time sheet delete
 - implement time entry delete
 - learn auth
 - implement authorization
+- implement total hours at the end of time entries list
 
-- how do you properly encapsulate a private component function?
 
 https://github.com/academind/yt-devmeetup-vue-firebase/tree/master/src
 https://scotch.io/tutorials/building-a-google-keep-clone-with-vue-and-firebase-pt-1
