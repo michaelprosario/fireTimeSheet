@@ -1,8 +1,5 @@
 Vue.component('list-time-entries', {
 
-    created: function () {
-
-    },
     data: function () {
 
         return {

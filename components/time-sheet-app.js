@@ -1,8 +1,4 @@
 
-function listTimeSheetsAddTimeSheet() {
-    $("#divCreateTimeSheet").css('display', 'block');
-}
-
 Vue.component('time-sheet-app', {
 
     created: function () {
@@ -21,7 +17,7 @@ Vue.component('time-sheet-app', {
             this.loadTimeEntryList();  
         },
 
-        loadTimeEntryList(){
+        loadTimeEntryList: function() {
             $("#divListTimeEntries").css('display', 'block');
             fsDataServices.getTimeEntries(currentTimeSheetId).then(function (items) {
                 timeEntryListData.splice(0, timeEntryListData.length)
@@ -35,6 +31,10 @@ Vue.component('time-sheet-app', {
         handleTimeEntrySaved: function () {
             this.loadTimeEntryList();
         },
+
+        listTimeSheetsAddTimeSheet: function() {
+            $("#divCreateTimeSheet").css('display', 'block');
+        },        
 
         selectTimeEntry: function (recordId) {
             console.log("load time entry ... " + recordId);
@@ -57,7 +57,7 @@ Vue.component('time-sheet-app', {
 
 <button type="button" 
         class="btn btn-primary" 
-        onclick="listTimeSheetsAddTimeSheet()"
+        v-on:click="listTimeSheetsAddTimeSheet()"
         >
         Add Time Sheet
 </button>
@@ -88,7 +88,6 @@ Vue.component('time-sheet-app', {
 <div id="divListTimeEntries"  style="display:none">
     <list-time-entries v-on:select-record="selectTimeEntry($event)" />
 </div>
-
 
 <div id="divCreateTimeEntry" style="display:none">
     <edit-time-entry v-on:record-saved="handleTimeEntrySaved()"/>

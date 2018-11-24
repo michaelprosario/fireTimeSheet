@@ -244,16 +244,15 @@ Vue.component('edit-time-entry', {
             Cancel
         </button>
 
+    </div><!-- end col -->
+
+</div><!-- end row -->            
 
 
-    </div>
-
-</div>            
-</div>
+</div><!-- end container -->
 
 <br>
 
-
-</div>
+</div><!-- end root div -->
 `
 })
