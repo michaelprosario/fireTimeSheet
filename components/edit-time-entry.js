@@ -5,7 +5,6 @@ Vue.component('edit-time-entry', {
         var dateToday = new Date();
         dateToday = getShortDateFormat(dateToday);
         timeEntryData.date = dateToday;
-        console.log(timeEntryData);
         return timeEntryData;
     },
 

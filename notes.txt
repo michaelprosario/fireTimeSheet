@@ -13,8 +13,10 @@ x- write function to update time entry
 x- implement edit logic
 x- implement function to select time sheet and load list of time entries
 x- implement js to hide and show lists and forms appropriately
+x- implement time entry delete
+
 - implement time sheet delete
-- implement time entry delete
+- small issue with sorting startTime
 - learn auth
 - implement authorization
 - implement total hours at the end of time entries list

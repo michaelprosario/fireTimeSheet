@@ -37,13 +37,17 @@ Vue.component('time-sheet-app', {
         },        
 
         selectTimeEntry: function (recordId) {
-            console.log("load time entry ... " + recordId);
             $("#divCreateTimeEntry").css('display', 'block');
 
             fsDataServices.getTimeEntry(recordId).then(function (record) {
                 Object.assign(timeEntryData, record);
             });
-        }
+        },
+
+        deleteTimeEntry: function (recordId) {
+            this.loadTimeEntryList();
+        }        
+
     },
 
     template: `
@@ -85,13 +89,19 @@ Vue.component('time-sheet-app', {
     </tbody>
 </table>
 
-<div id="divListTimeEntries"  style="display:none">
-    <list-time-entries v-on:select-record="selectTimeEntry($event)" />
+<div id="divCreateTimeEntry" style="display:none">
+    <hr>
+    <edit-time-entry v-on:record-saved="handleTimeEntrySaved()"/>
+    <hr>
 </div>
 
-<div id="divCreateTimeEntry" style="display:none">
-    <edit-time-entry v-on:record-saved="handleTimeEntrySaved()"/>
+<div id="divListTimeEntries"  style="display:none">
+    <list-time-entries 
+        v-on:select-record="selectTimeEntry($event)"
+        v-on:delete-record="deleteTimeEntry($event)" 
+        />
 </div>
+
 
 </div>
 

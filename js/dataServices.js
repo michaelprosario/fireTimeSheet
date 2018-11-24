@@ -74,6 +74,19 @@ class FireStoreDataServices {
         });
     }
 
+    deleteTimeEntry(recordID) {
+        return new Promise(function (resolve, reject) {
+            var db = firebase.firestore();
+
+            db.collection("time_entries").doc(recordID).delete().then(function (doc) {
+                resolve();
+            }).catch(function (error) {
+                reject("Error getting document:", error);
+            });
+        });
+    }
+
+
     getTimeEntries(recordId) {
         if(recordId == null){
             throw "recordId is required."

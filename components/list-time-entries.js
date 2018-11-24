@@ -12,8 +12,25 @@ Vue.component('list-time-entries', {
             this.$emit('select-record', objRow.id)
         },
 
+        deleteRecord: function (objRow) {
+
+            if(confirm("Press OK to delete entry")){
+                var vm = this;
+                fsDataServices.deleteTimeEntry(objRow.id).then(function(){
+                    vm.$emit('delete-record', objRow.id);
+                });
+            }
+        },
+
         handleAddTimeEntry: function(){
             $("#divCreateTimeEntry").css('display', 'block');
+            var dateToday = new Date();
+            dateToday = getShortDateFormat(dateToday);
+            
+            var emptyTimeEntry = fsDataServices.getEmptyTimeEntry();
+            Object.assign(timeEntryData, emptyTimeEntry);
+            
+            timeEntryData.date = dateToday;
         },
     },
 
@@ -48,6 +65,10 @@ Vue.component('list-time-entries', {
                     <button @click="selectRecord(timeEntry)" >
                     Edit
                     </button>
+                    <button @click="deleteRecord(timeEntry)" >
+                    Delete
+                    </button>
+
                 </td>
             </tr>
         </tbody>
