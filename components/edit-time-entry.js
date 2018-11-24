@@ -77,18 +77,24 @@ Vue.component('edit-time-entry', {
                     if (this.id === null || this.id === '') {
                         fsDataServices.addTimeEntry(timeEntryRecord).then(function () {
                             vm.$emit('record-saved');
+                            $("#divCreateTimeEntry").css('display', 'none');
                         });
                     } else {
                         fsDataServices.updateTimeEntry(timeEntryRecord).then(function () {
                             vm.$emit('record-saved');
+                            $("#divCreateTimeEntry").css('display', 'none');
                         });
                     }
 
                 } else {
                     console.log(errors);
                 }
-            }
+            },
 
+            handleCancelTimeEntry: function(){
+                $("#divCreateTimeEntry").css('display', 'none');
+            }
+                 
         },
 
 
@@ -229,6 +235,17 @@ Vue.component('edit-time-entry', {
             >
             Save
         </button>
+
+        <button 
+            type="button" 
+            class="btn btn-large btn-primary"
+            v-on:click="handleCancelTimeEntry"
+            >
+            Cancel
+        </button>
+
+
+
     </div>
 
 </div>            

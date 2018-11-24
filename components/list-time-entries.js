@@ -13,14 +13,18 @@ Vue.component('list-time-entries', {
     methods: {
         selectRecord: function (objRow) {
             this.$emit('select-record', objRow.id)
-        }
+        },
+
+        handleAddTimeEntry: function(){
+            $("#divCreateTimeEntry").css('display', 'block');
+        },
     },
 
     template: `
 <div>
 
     <h1>Time Entry List</h1>
-    <button type="button" class="btn btn-primary">Add Time Entry</button>
+    <button type="button" class="btn btn-primary" v-on:click="handleAddTimeEntry">Add Time Entry</button>
     <table class="table table-hover">
         <thead>
             <tr>

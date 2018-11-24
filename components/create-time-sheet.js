@@ -47,6 +47,10 @@ Vue.component('create-time-sheet', {
         {
             handleSave: function () {
                 createTimeSheetComponent.save();
+            },
+
+            handleCancel: function(){
+                $("#divCreateTimeSheet").css('display', 'none');
             }
         },
 
@@ -66,7 +70,11 @@ Vue.component('create-time-sheet', {
       <button type="button" class="btn btn-large btn-primary" v-on:click="handleSave()">
           Save
       </button>
+      <button type="button" class="btn btn-large btn-primary" v-on:click="handleCancel()">
+          Cancel
+      </button>
   </div>
+  <br>
 </div>   
   `
 })

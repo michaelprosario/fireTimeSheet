@@ -15,9 +15,9 @@ x- write function to update time entry
 x- implement edit logic
 
 x- implement function to select time sheet and load list of time entries
+- implement js to hide and show lists and forms appropriately
 - implement time sheet delete
 - implement time entry delete
-- implement js to hide and show lists and forms appropriately
 - learn auth
 - implement authorization
 
