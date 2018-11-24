@@ -74,12 +74,16 @@ class FireStoreDataServices {
         });
     }
 
-    getTimeEntries() {
+    getTimeEntries(recordId) {
+        if(recordId == null){
+            throw "recordId is required."
+        }
+
         return new Promise(function (resolve, reject) {
             var db = firebase.firestore();
 
             var items = [];
-            db.collection("time_entries").get().then((querySnapshot) => {
+            db.collection("time_entries").where("timeSheetId", "==", recordId).get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
                     var rowData = doc.data();
                     var timeEntryRow = {
@@ -126,5 +130,21 @@ class FireStoreDataServices {
 
             });
         });
+    }
+
+    getEmptyTimeEntry() {
+        return {
+            startTime: '',
+            endTime: '',
+            hours: '',
+            project: '',
+            story: '',
+            task: '',
+            date: '',
+            notes: '',
+            errors: [],
+            timeSheetId: currentTimeSheetId,
+            id: ''
+        }
     }
 }

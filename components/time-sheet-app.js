@@ -15,13 +15,14 @@ Vue.component('time-sheet-app', {
     },
 
     methods: {
-        selectTimeEntry: function (recordId) {
-            this.loadTimeEntry(recordId)
+        selectRecord: function (recordId) {
+            console.log("Load time sheet: " + recordId);
+            currentTimeSheetId = recordId;
+            this.loadTimeEntryList();  
         },
 
-        handleTimeEntrySaved: function () {
-            fsDataServices.getTimeEntries().then(function (items) {
-
+        loadTimeEntryList(){
+            fsDataServices.getTimeEntries(currentTimeSheetId).then(function (items) {
                 timeEntryListData.splice(0, timeEntryListData.length)
                 items.forEach((record) => {
                     timeEntryListData.push(record);
@@ -30,7 +31,11 @@ Vue.component('time-sheet-app', {
             });
         },
 
-        loadTimeEntry: function (recordId) {
+        handleTimeEntrySaved: function () {
+            this.loadTimeEntryList();
+        },
+
+        selectTimeEntry: function (recordId) {
             console.log("load time entry ... " + recordId);
 
             fsDataServices.getTimeEntry(recordId).then(function (record) {
@@ -68,7 +73,9 @@ Vue.component('time-sheet-app', {
             <td scope="row">{{timeSheet.startDate}}</td>
             <td>{{timeSheet.endDate}}</td>
             <td>
-            <a v-bind:href="timeSheet.id">Edit</a>           
+            <button @click="selectRecord(timeSheet.id)" >
+            Edit
+            </button>
             </td>
             <td>&nbsp;</td>
         </tr>        

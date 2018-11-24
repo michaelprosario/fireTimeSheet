@@ -28,43 +28,33 @@
     <script>
         var fsDataServices;
         var timeSheetData;
-        var timeEntryListData;
+        var timeEntryListData = [];
         var timeEntryData;
-        var currentTimeSheetId = "fixme";
+        var currentTimeSheetId = "";
 
         function loadTimeSheetList() {
             fsDataServices.getTimeSheets().then(function (items) {
                 timeSheetData = items;
-                fsDataServices.getTimeEntries().then(function (items) {
-                    timeEntryListData = items;
 
-                    var listTimeSheetsComponent = new Vue(
-                        {
-                            el: '#divListTimeSheets'
-                        });
-
+                var listTimeSheetsComponent = new Vue(
+                {
+                    el: '#divListTimeSheets'
                 });
+
             });
         }
 
         $(document).ready(function () {
-            timeEntryData = {
-                startTime: '',
-                endTime: '',
-                hours: '',
-                project: '',
-                story: '',
-                task: '',
-                date: '',
-                notes: '',
-                errors: [],
-                timeSheetId: currentTimeSheetId,
-                id: ''
-            }
-
             fsDataServices = new FireStoreDataServices();
+            timeEntryData = fsDataServices.getEmptyTimeEntry();
             loadTimeSheetList();
         });
+
+        
+
+
+
+
     </script>
 </head>
 

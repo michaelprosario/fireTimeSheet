@@ -14,7 +14,7 @@ x- connect time entry data to form
 x- write function to update time entry
 x- implement edit logic
 
-- implement function to select time sheet and load list of time entries
+x- implement function to select time sheet and load list of time entries
 - implement time sheet delete
 - implement time entry delete
 - implement js to hide and show lists and forms appropriately
